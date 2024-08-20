@@ -19,3 +19,9 @@ password_checker/
  * Times Breached: Shows how many times the password hash has been seen in breaches.
  * Probability of Being Hacked: A simple probability estimate.
  * Responsive UI: Thanks to Tailwind CSS, the UI is responsive and easy to navigate.
+
+# Screenshots
+
+![pbc-main.png](images/pbc-main.png)
+
+![pbc-results.png](images/pbc-results.png)
