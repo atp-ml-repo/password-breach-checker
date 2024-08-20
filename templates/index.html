@@ -2,9 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Breach Checker</title>
+    <link href="{{ url_for('static', filename='css/tailwind.css') }}" rel="stylesheet">
 </head>
-<body>
-
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-4 text-center">Password Breach Checker</h2>
+        <form action="/" method="post" class="space-y-4">
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Enter your password:</label>
+                <input type="password" name="password" id="password" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            </div>
+            <div>
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    Check Password
+                </button>
+            </div>
+        </form>
+        {% if full_hash %}
+        <div class="mt-6">
+            <h3 class="text-xl font-semibold">Results:</h3>
+            <p class="mt-2"><strong>Full SHA-1 Hash:</strong> {{ full_hash }}</p>
+            <p><strong>Times Breached:</strong> {{ count }}</p>
+            <p><strong>Probability of Being Hacked:</strong> {{ probability * 100 }}%</p>
+            {% if is_breached %}
+            <p class="mt-4 text-red-600 font-bold">Your password has been breached! Consider changing it.</p>
+            {% else %}
+            <p class="mt-4 text-green-600 font-bold">Your password is safe and hasn't been found in known breaches.</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
 </body>
 </html>
